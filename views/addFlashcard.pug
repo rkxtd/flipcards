@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h3 Create New Flashcard
+
+  form(method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='category') Category
+      .col-md-8
+        select.form-control(name='category', id='category', autofocus=true)
+          option(value='algorithms', selected=true) algorithms
+          option(value='sorting') sorting
+          option(value='data structures') data structures
+          option(value='trees') trees
+          option(value='graphs') graphs
+          option(value='dynamic programming') dynamic programming
+          option(value='networking') networking
+          option(value='system design') system design
+          option(value='design patterns') design patterns
+          option(value='processes and threads') processes and threads
+          option(value='coding') coding
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='complexity') Complexity
+      .col-md-8
+        select.form-control(name='complexity', id='complexity')
+          option(value=easy, selected=true) easy
+          option(value=medium) medium
+          option(value=hard) hard
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='title') Question
+      .col-md-8
+        textarea.form-control(name='title', id='title', rows='4')
+    .form-group.row
+      label(class='col-md-2 col-form-label font-weight-bold', for='answer') Answer
+      .col-md-8
+        textarea.form-control(name='answer', id='answer', rows='8')
+    .form-group
+      .offset-md-2.col-md-8.p-1
+        button.btn.btn-primary(type='submit')
+          i.far.fa-envelope.fa-sm
+          | Send
