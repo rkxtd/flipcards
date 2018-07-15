@@ -135,9 +135,11 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
-app.get('/flashcard', flashcardController.getFlashCardForm);
-app.post('/flashcard', flashcardController.postFlashCard);
-app.get('/flashcards', flashcardController.getFlashCards);
+app.get('/flashcard/add', flashcardController.getFlashCardForm);
+app.post('/flashcard/add', flashcardController.postFlashCard);
+app.get('/flashcard/delete/:userId', flashcardController.deleteFlashCard);
+app.get('/flashcard/list', flashcardController.getFlashCards);
+app.get('/flashcards', flashcardController.runFlashCards);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
@@ -148,6 +150,7 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
  * API examples routes.
  */
 app.get('/api', apiController.getApi);
+app.get('/api/flashcards', apiController.getFlashCards);
 app.get('/api/lastfm', apiController.getLastfm);
 app.get('/api/nyt', apiController.getNewYorkTimes);
 app.get('/api/aviary', apiController.getAviary);

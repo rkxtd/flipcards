@@ -1,0 +1,98 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+/* entire container, keeps perspective */
+.flip-container {
+  perspective: 1000px;
+  font-size: 1.3rem; }
+
+/* flip the pane when hovered */
+.flip-container:hover .flip-card,
+.flip-container.hover .flip-card,
+.flip-container:focus .flip-card {
+  transform: rotateY(180deg); }
+
+.flip-container, .card-front, .card-back {
+  width: 380px;
+  height: 420px; }
+
+/* flip speed goes here */
+.flip-card {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative; }
+
+/* hide back of pane during swap */
+.card-front, .card-back {
+  border-radius: 15px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+/* front pane, placed above back */
+.card-front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg); }
+
+/* back, initially hidden pane */
+.card-back {
+  transform: rotateY(180deg); }
+
+.viewport {
+  position: relative;
+  display: inline-block; }
+
+.controls, .buttons {
+  padding-top: 15px; }
+
+.buttons {
+  display: flex;
+  justify-content: space-between; }
+
+.text {
+  text-shadow: black 0px 0px 10px;
+  color: #fff; }
+
+.flip-card .math {
+  background-image: linear-gradient(to bottom, #a7cc32 0%, #b294a1 100%); }
+
+.flip-card .algorithms {
+  background-image: linear-gradient(to bottom, #ff5632 0%, #b294a1 100%); }
+
+.flip-card .data-structures {
+  background-image: linear-gradient(to bottom, #56c2a7 0%, #c1f693 100%); }
+
+.flip-card .card-back {
+  background-image: linear-gradient(to bottom, #6783c1 0%, #c1f693 100%); }
+
+.flip-card .complexity {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  border-bottom: solid 1px; }
+
+.flip-rating {
+  position: absolute;
+  font-size: 1.3rem;
+  top: 3px;
+  right: 10px;
+  z-index: 9999; }
+
+.flip-filters {
+  display: flex;
+  text-align: left;
+  justify-content: center; }
+
+.good {
+  background-color: green; }
+
+.moderate {
+  background-color: orange; }
+
+.bad {
+  background-color: red; }

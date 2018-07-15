@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='theme-color' content='#4DA5F4')
+    meta(name='csrf-token', content=_csrf)
+    title rkxtd Flashcards! - comanche's learning group
+    link(rel='stylesheet', href='//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.css')
+    link(rel='stylesheet', href='//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/flashcards.css')
+    script(src='/js/lib/jquery.min.js')
+    script(src='/js/lib/bootstrap.min.js')
+    script(src='/js/lib/popper.min.js')
+    script(src='/js/lib/redux.min.js')
+    script(src='/js/flipcards.js')
+  body.text-center
+    .viewport
+      div(id='flip-container' class='flip-container' ontouchstart='this.classList.toggle(\'hover\');')
+        | loading...
+      div.controls
+        .progress
+          #completed-questions.progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%")
+            span#completed-questions_value 0%
+        .buttons
+          button#flip-prev-button.btn.btn-primary Prev question
+          button#flip-next-button.btn.btn-primary Next question
+        #flip-filters.flip-filters
+          | loading...

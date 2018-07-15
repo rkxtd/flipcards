@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  .pb-2.mt-2.mb-4.border-bottom
+    h2
+      i.far.fa-building.fa-sm
+      | Manage Flash Cards
+
+  .btn-group.d-flex(role='group')
+    a.btn.btn-primary(href='/flashcard/add').w-100
+      i.far.fa-check-square.fa-sm
+      | Add Flash Card
+
+  h4 List of Flash Cards
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th Category
+        th Complexity
+        th.hidden-xs Question
+        th.hidden-xs Answer
+        th Actions
+    tbody
+      for question in questions
+        tr
+          td= question.category
+          td= question.complexity
+          td= question.title
+          td= question.answer
+          td
+            a.btn.btn-primary(href='/flashcard/edit/' + question.id).w-100
+              i.far.fa-check-square.fa-sm
+              | Edit
+            a.btn.btn-primary(href='/flashcard/delete/' + question.id onclick='return confirm("You really want to delete this?")').w-100
+              i.far.fa-check-square.fa-sm
+              | Delete

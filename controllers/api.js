@@ -13,6 +13,7 @@ const clockwork = require('clockwork')({ key: process.env.CLOCKWORK_KEY });
 const paypal = require('paypal-rest-sdk');
 const lob = require('lob')(process.env.LOB_KEY);
 const ig = require('instagram-node').instagram();
+const Question = require('../models/Question');
 const { Venues, Users } = require('node-foursquare')({
   secrets: {
     clientId: process.env.FOURSQUARE_ID,
@@ -32,6 +33,13 @@ const { Venues, Users } = require('node-foursquare')({
 exports.getApi = (req, res) => {
   res.render('api/index', {
     title: 'API Examples'
+  });
+};
+
+exports.getFlashCards = (req, res) => {
+  Question.find({}, (err, records) => {
+    if (err) { return next(err); }
+    res.json({ records });
   });
 };
 

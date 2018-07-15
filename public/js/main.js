@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
-  // Place JavaScript code here...
-
+  $('#answer').richText();
+  $('#title').richText();
 });
