@@ -41,7 +41,7 @@ $(document).ready(() => {
 
     flipCardDiv.className = 'flip-card';
     cardFrontDiv.className = `card-front ${question.complexity} ${question.category.replace(' ', '-')}`;
-    cardBackDiv.className = 'card-back';
+    cardBackDiv.className = `card-back ${question.complexity} ${question.category.replace(' ', '-')}`;
     ratingDiv.className = 'flip-rating';
 
     cardFrontDiv.innerHTML = `<div class="complexity ${question.complexity}">${question.category} / ${question.complexity}</div><div class="text">${question.title}</div>`;

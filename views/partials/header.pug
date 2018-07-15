@@ -10,14 +10,17 @@
       ul.nav.navbar-nav
         li.nav-item(class=(title === 'Home') ? 'active' : undefined)
           a.nav-link(href='/') Home
-        li.nav-item(class=(title === 'API Examples') ? 'active' : undefined)
-          a.nav-link(href='/api') API Examples
-        li.nav-item(class=(title === 'Manage Flash Cards') ? 'active' : undefined)
-          a.nav-link(href='/flashcard/list') Manage Flash Cards
         li.nav-item(class=(title === 'Flash Cards') ? 'active' : undefined)
           a.nav-link(href='/flashcards') Flash Cards
-        li.nav-item(class=(title === 'Status') ? 'active' : undefined)
-          a.nav-link(href='/status') Status
+        if user && user.admin === true
+          li.nav-item(class=(title === 'API Examples') ? 'active' : undefined)
+            a.nav-link(href='/api') API Examples
+          li.nav-item(class=(title === 'Manage Flash Cards') ? 'active' : undefined)
+            a.nav-link(href='/flashcard/list') Manage Flash Cards
+          li.nav-item(class=(title === 'Import Flash Cards') ? 'active' : undefined)
+            a.nav-link(href='/flashcard/import') Import Flash Cards
+          li.nav-item(class=(title === 'Status') ? 'active' : undefined)
+            a.nav-link(href='/status') Status
       ul.nav.navbar-nav.ml-auto
         if !user
           li.nav-item(class=(title === 'Login') ? 'active' : undefined)

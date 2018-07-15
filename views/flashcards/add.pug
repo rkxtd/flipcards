@@ -6,21 +6,14 @@ block content
 
   form(method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
+    input(type='hidden', name='_id', value=question._id)
     .form-group.row
       label(class='col-md-2 col-form-label font-weight-bold', for='category') Category
       .col-md-8
         select.form-control(name='category', id='category', autofocus=true)
-          option(value='algorithms', selected=true) algorithms
-          option(value='sorting') sorting
-          option(value='data structures') data structures
-          option(value='trees') trees
-          option(value='graphs') graphs
-          option(value='dynamic programming') dynamic programming
-          option(value='networking') networking
-          option(value='system design') system design
-          option(value='design patterns') design patterns
-          option(value='processes and threads') processes and threads
-          option(value='coding') coding
+          each val in ['algorithms', 'sorting', 'data structures', 'trees', 'graphs', 'dynamic programming', 'networking', 'hardware', 'coding', 'system design', 'design patterns', 'processes and threads']
+            option(value=val, selected=question.category === val)
+              =val
     .form-group.row
       label(class='col-md-2 col-form-label font-weight-bold', for='complexity') Complexity
       .col-md-8
@@ -32,12 +25,17 @@ block content
       label(class='col-md-2 col-form-label font-weight-bold', for='title') Question
       .col-md-8
         textarea.form-control(name='title', id='title', rows='4')
+          =question.title
     .form-group.row
       label(class='col-md-2 col-form-label font-weight-bold', for='answer') Answer
       .col-md-8
         textarea.form-control(name='answer', id='answer', rows='8')
+          =question.answer
     .form-group
-      .offset-md-2.col-md-8.p-1
+      .offset-md-2.col-md-8.p-1.controls
         button.btn.btn-primary(type='submit')
-          i.far.fa-envelope.fa-sm
-          | Send
+          i.far.fa-save.fa-sm
+          | Save
+        button.btn.btn-secondary(type='button')
+          i.far.fa-undo.fa-sm
+          | Back

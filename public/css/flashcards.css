@@ -1,4 +1,7 @@
 @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+body {
+  padding: 15px; }
+
 /* entire container, keeps perspective */
 .flip-container {
   perspective: 1000px;
@@ -58,8 +61,16 @@
   text-shadow: black 0px 0px 10px;
   color: #fff; }
 
+.flip-card .coding {
+  background-image: linear-gradient(to bottom, #124154 0%, #6a9c55 100%); }
+  .flip-card .coding .complexity, .flip-card .coding .flip-rating {
+    color: white; }
+
 .flip-card .math {
   background-image: linear-gradient(to bottom, #a7cc32 0%, #b294a1 100%); }
+
+.flip-card .networking {
+  background-image: linear-gradient(to bottom, #98a1a1 0%, #b294a1 100%); }
 
 .flip-card .algorithms {
   background-image: linear-gradient(to bottom, #ff5632 0%, #b294a1 100%); }
@@ -69,6 +80,15 @@
 
 .flip-card .card-back {
   background-image: linear-gradient(to bottom, #6783c1 0%, #c1f693 100%); }
+
+.flip-card .card-back.coding .text {
+  text-align: left;
+  text-shadow: none; }
+  .flip-card .card-back.coding .text pre {
+    padding: 30px;
+    height: 420px;
+    border-radius: 15px;
+    font-size: 15px; }
 
 .flip-card .complexity {
   position: absolute;

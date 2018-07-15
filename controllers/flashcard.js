@@ -1,12 +1,16 @@
 const Question = require('../models/Question');
 
+const addFlashCardRoute = '/flashcard/add';
+const listFlashCardRoute = '/flashcard/list';
+
 /**
  * GET /flashcard
  * Add flash Card form page.
  */
-exports.getFlashCardForm = (req, res) => {
+exports.addFlashCardForm = (req, res) => {
   res.render('flashcards/add', {
-    title: 'Add Flash Card'
+    title: 'Add Flash Card',
+    question: {}
   });
 };
 
@@ -21,6 +25,21 @@ exports.getFlashCards = (req, res) => {
       title: 'Add Flash Card',
       questions: records
     });
+  });
+};
+
+exports.editFlashCardForm = (req, res) => {
+  const { flashCardId: id } = req.params;
+  Question.findOne({ _id: id }, (err, question) => {
+    if (err) {
+      req.flash('errors', { msg: `Such id[${id}] does'nt exists in our database.` });
+      res.redirect(listFlashCardRoute);
+    } else {
+      res.render('flashcards/add', {
+        title: 'Edit Flash Card',
+        question,
+      });
+    }
   });
 };
 
@@ -50,8 +69,7 @@ exports.deleteFlashCard = (req, res) => {
  * POST /flashcard
  * Save flash Card to MongoDB.
  */
-exports.postFlashCard = (req, res) => {
-  const addFlashCardRoute = '/flashcard/add';
+exports.addFlashCard = (req, res) => {
   req.assert('category', 'Category cannot be blank').notEmpty();
   req.assert('complexity', 'Complexity cannot be blank').notEmpty();
   req.assert('title', 'Title cannot be blank').notEmpty();
@@ -67,7 +85,6 @@ exports.postFlashCard = (req, res) => {
   const {
     category, complexity, title, answer
   } = req.body;
-
   const question = new Question({
     category,
     complexity,
@@ -87,7 +104,42 @@ exports.postFlashCard = (req, res) => {
         return res.redirect(addFlashCardRoute);
       }
       req.flash('success', { msg: 'Card was added successfully!' });
-      res.redirect(addFlashCardRoute);
     });
   });
+  res.redirect(listFlashCardRoute);
+};
+
+exports.editFlashCard = (req, res) => {
+  req.assert('category', 'Category cannot be blank').notEmpty();
+  req.assert('complexity', 'Complexity cannot be blank').notEmpty();
+  req.assert('title', 'Title cannot be blank').notEmpty();
+  req.assert('answer', 'Answer cannot be blank').notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect(listFlashCardRoute);
+  }
+
+  const {
+    _id, category, complexity, title, answer
+  } = req.body;
+
+  Question.findOne({ _id })
+    .then((question) => {
+      if (!question) {
+        req.flash('errors', { msg: 'Such Question doesn\'t exists.' });
+      } else {
+        question.category = category;
+        question.complexity = complexity;
+        question.title = title;
+        question.answer = answer;
+        question = question.save();
+        req.flash('success', { msg: 'Card was saved successfully!' });
+      }
+      return question;
+    });
+
+  res.redirect(listFlashCardRoute);
 };
