@@ -69,6 +69,7 @@ body {
 
 .text {
   text-shadow: black 0px 0px 10px;
+  padding: 10px;
   color: #fff;
 }
 .flip-card .coding {
@@ -78,20 +79,47 @@ body {
   }
 }
 
-.flip-card .math {
+.flip-card .algorithms {
+  background-color: #dcff46;
+}
+
+.flip-card .sorting {
   background-image: linear-gradient(to bottom, #a7cc32 0%, #b294a1 100%);
 }
 
-.flip-card .networking {
-  background-image: linear-gradient(to bottom, #98a1a1 0%, #b294a1 100%);
-}
-
-.flip-card .algorithms {
-  background-image: linear-gradient(to bottom, #ff5632 0%, #b294a1 100%);
-}
-
 .flip-card .data-structures {
-  background-image: linear-gradient(to bottom, #56c2a7 0%, #c1f693 100%);
+  background-color: #ff7455;
+}
+
+.flip-card .trees {
+  background-color: #fff740;
+}
+
+.flip-card .graphs {
+  background-color: #feff9c;
+}
+
+.flip-card .dynamic-programming {
+  background-color: #fff740;
+}
+
+.flip-card .networking {
+  background-color: #1ba8b1;
+}
+
+.flip-card .hardware {
+  background-color: #7afcff
+}
+
+.flip-card .system-design {
+  background-color: #ff65a3
+}
+.flip-card .design-patterns {
+  background-color: #ff7eb9
+}
+
+.flip-card .processes-and-threads {
+  background-color: #fff740;
 }
 
 .flip-card .card-back {
