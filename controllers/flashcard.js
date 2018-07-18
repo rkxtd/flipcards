@@ -54,15 +54,14 @@ exports.runFlashCards = (req, res) => {
 };
 
 exports.deleteFlashCard = (req, res) => {
-  const flashCardListRoute = '/flashcard/list';
-  const { userId: id } = req.params;
+  const { flashCardId: id } = req.params;
   Question.deleteOne({ _id: id }, (err) => {
     if (err) {
       req.flash('errors', { msg: `Such id[${id}] does'nt exists in our database.` });
     } else {
       req.flash('success', { msg: 'Card was deleted successfully!' });
     }
-    res.redirect(flashCardListRoute);
+    res.redirect(listFlashCardRoute);
   });
 };
 /**

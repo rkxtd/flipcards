@@ -123,7 +123,8 @@ body {
   font-size: 1.3rem;
   top: 3px;
   right: 10px;
-  z-index: 9999; }
+  z-index: 9999;
+  cursor: pointer; }
 
 .flip-filters {
   display: flex;

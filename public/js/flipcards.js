@@ -183,12 +183,22 @@ $(document).ready(() => {
 
   fetch('/api/flashcards')
     .then(response => response.json())
-    .then(({ records }) => ({
-      filters: ['category', 'complexity'],
-      questions: records.map(record => ({ ...record, star: false })),
-    }))
-    .then(response => store.dispatch({ type: 'LOAD', data: response }))
-    .then(() => store.dispatch({ type: 'NEXT' }));
+    .then(({ records: questions }) => {
+      postData('/api/flashcards/my', { _csrf: $('meta[name=csrf-token]')[0].content })
+        .then(({ learned, favored }) => {
+          return {
+            filters: ['category', 'complexity'],
+            questions: questions
+              .filter((question) => learned.indexOf(question._id) === -1)
+              .map(question => ({
+                ...question,
+                star: favored.indexOf(question._id) !== -1,
+              })),
+          };
+        })
+        .then(data => store.dispatch({ type: 'LOAD', data }))
+        .then(() => store.dispatch({ type: 'NEXT' }));
+    });
 
   store.subscribe(render);
   flipNextButton.on('click', () => {
@@ -222,4 +232,28 @@ $(document).ready(() => {
     });
     store.dispatch({ type: 'NEXT' });
   });
+
+  $('#flip-learn-button').on('click', () => {
+    const {
+      currentQuestion: { _id },
+    } = store.getState();
+    const _csrf = $('meta[name=csrf-token]')[0].content;
+    postData(`/api/flashcards/learned`, { _csrf, _id })
+      .then(({ status, message }) => {
+        console.log(`Status: ${status}. Message: ${message}`);
+      })
+      .then(() => store.dispatch({ type: 'NEXT' }));
+  });
+
+  // $('.flip-rating').on('click', () => {
+  //   const {
+  //     currentQuestion: { _id },
+  //   } = store.getState();
+  //   const _csrf = $('meta[name=csrf-token]')[0].content;
+  //   postData(`/api/flashcards/favored`, { _csrf, _id })
+  //     .then(({ status, message }) => {
+  //       console.log(`Status: ${status}. Message: ${message}`);
+  //     })
+  //     .then(() => store.dispatch({ type: 'NEXT' }));
+  // });
 });

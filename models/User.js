@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-
+  flipcards: {
+    learned: [],
+    favored: []
+  },
   facebook: String,
   twitter: String,
   google: String,

@@ -15,6 +15,7 @@ html(lang="en")
     script(src='/js/lib/bootstrap.min.js')
     script(src='/js/lib/popper.min.js')
     script(src='/js/lib/redux.min.js')
+    script(src='/js/lib/utils.js')
     script(src='/js/flipcards.js')
   body.text-center
     .viewport
@@ -26,6 +27,7 @@ html(lang="en")
             span#completed-questions_value 0%
         .buttons
           button#flip-prev-button.btn.btn-primary Prev question
+          button#flip-learn-button.btn.btn-secondary I Remember!
           button#flip-next-button.btn.btn-primary Next question
         #flip-filters.flip-filters
           | loading...

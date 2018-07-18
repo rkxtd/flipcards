@@ -14,6 +14,7 @@ const paypal = require('paypal-rest-sdk');
 const lob = require('lob')(process.env.LOB_KEY);
 const ig = require('instagram-node').instagram();
 const Question = require('../models/Question');
+const User = require('../models/User');
 const { Venues, Users } = require('node-foursquare')({
   secrets: {
     clientId: process.env.FOURSQUARE_ID,
@@ -40,6 +41,75 @@ exports.getFlashCards = (req, res) => {
   Question.find({}, (err, records) => {
     if (err) { return next(err); }
     res.json({ records });
+  });
+};
+
+exports.getMyFlashCards = (req, res) => {
+  User.findOne({ _id: req.user._id }, (err, { flipcards: { learned, favored } }) => {
+    if (err) { return next(err); }
+    res.json({ learned, favored });
+  });
+};
+
+exports.setFlashCardLearned = (req, res) => {
+  const {
+    user: { _id: userId },
+    body: { _id: flashCardId }
+  } = req;
+
+  User.findOne({ _id: userId }, (err, user) => {
+    if (user.flipcards.learned.indexOf(flashCardId) !== -1) {
+      res.json({
+        status: 'error',
+        message: `Flash Card ${flashCardId} already added to learned list`,
+      });
+      return false;
+    }
+    user.flipcards.learned.push(flashCardId);
+    user.save((err) => {
+      if (err) {
+        res.json({
+          status: 'error',
+          message: `Error during saving: ${err}`,
+        });
+        return false;
+      }
+      res.json({
+        status: 'success',
+        message: `Flash Card ${flashCardId} was added to your learned list`,
+      });
+    });
+  });
+};
+
+exports.setFlashCardFavored = (req, res) => {
+  const {
+    user: { _id: userId },
+    body: { _id: flashCardId }
+  } = req;
+
+  User.findOne({ _id: userId }, (err, user) => {
+    if (user.flipcards.learned.indexOf(flashCardId) !== -1) {
+      res.json({
+        status: 'error',
+        message: `Flash Card ${flashCardId} already added to learned list`,
+      });
+      return false;
+    }
+    user.flipcards.learned.push(flashCardId);
+    user.save((err) => {
+      if (err) {
+        res.json({
+          status: 'error',
+          message: `Error during saving: ${err}`,
+        });
+        return false;
+      }
+      res.json({
+        status: 'success',
+        message: `Flash Card ${flashCardId} was added to your learned list`,
+      });
+    });
   });
 };
 

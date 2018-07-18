@@ -137,7 +137,7 @@ app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/flashcard/add', passportConfig.isAuthenticated, flashcardController.addFlashCardForm);
 app.post('/flashcard/add', passportConfig.isAuthenticated, flashcardController.addFlashCard);
-app.get('/flashcard/delete/:userId', passportConfig.isAuthenticated, flashcardController.deleteFlashCard);
+app.get('/flashcard/delete/:flashCardId', passportConfig.isAuthenticated, flashcardController.deleteFlashCard);
 app.get('/flashcard/edit/:flashCardId', passportConfig.isAuthenticated, flashcardController.editFlashCardForm);
 app.post('/flashcard/edit/:flashCardId', passportConfig.isAuthenticated, flashcardController.editFlashCard);
 app.get('/flashcard/list', passportConfig.isAuthenticated, flashcardController.getFlashCards);
@@ -153,6 +153,9 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
  */
 app.get('/api', apiController.getApi);
 app.get('/api/flashcards', apiController.getFlashCards);
+app.post('/api/flashcards/my', passportConfig.isAuthenticated, apiController.getMyFlashCards);
+app.post('/api/flashcards/learned', passportConfig.isAuthenticated, apiController.setFlashCardLearned);
+app.post('/api/flashcards/favored', passportConfig.isAuthenticated, apiController.setFlashCardFavored);
 // app.get('/api/lastfm', apiController.getLastfm);
 // app.get('/api/nyt', apiController.getNewYorkTimes);
 // app.get('/api/aviary', apiController.getAviary);
