@@ -44,8 +44,8 @@ $(document).ready(() => {
     cardBackDiv.className = `card-back ${question.complexity} ${question.category.replace(' ', '-')}`;
     ratingDiv.className = 'flip-rating';
 
-    cardFrontDiv.innerHTML = `<div class="complexity ${question.complexity}">${question.category} / ${question.complexity}</div><div class="text">${question.title}</div>`;
-    cardBackDiv.innerHTML = `<div class="text">${question.answer}</div>`;
+    cardFrontDiv.innerHTML = `<div class="complexity ${question.complexity}">${question.category} / ${question.complexity}</div><div class="text">${question.title.replace(/(?:\r\n|\r|\n)/g, '<br>')}</div>`;
+    cardBackDiv.innerHTML = `<div class="text">${question.answer.replace(/(?:\r\n|\r|\n)/g, '<br>')}</div>`;
     ratingDiv.innerHTML = `<span class="mdi mdi-${question.star ? 'star' : 'star-outline'}"></span>`;
 
     cardFrontDiv.append(ratingDiv.cloneNode(true));

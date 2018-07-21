@@ -56,7 +56,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 //  *       - If there is, return an error message.
 //  *       - Else create a new account.
 //  */
-//
+
 // /**
 //  * Sign in with Facebook.
 //  */
