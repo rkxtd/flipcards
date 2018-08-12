@@ -53,7 +53,7 @@ exports.getMyFlashCards = (req, res) => {
 
 exports.getFlashCardStatistic = (req, res) => {
   Question.find({}, (err, questions) => {
-    if (req.user._id) {
+    if (req.user) {
       User.findOne({ _id: req.user._id }, (err, { flipcards: { learned, favored } }) => {
         if (err) {
           return next(err);
