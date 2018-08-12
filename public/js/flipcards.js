@@ -40,8 +40,8 @@ $(document).ready(() => {
     const ratingDiv = document.createElement("div");
 
     flipCardDiv.className = 'flip-card';
-    cardFrontDiv.className = `card-front ${question.complexity} ${question.category.replace(' ', '-')}`;
-    cardBackDiv.className = `card-back ${question.complexity} ${question.category.replace(' ', '-')}`;
+    cardFrontDiv.className = `card-front ${question.complexity} ${question.category.replace(/ /g, '-')}`;
+    cardBackDiv.className = `card-back ${question.complexity} ${question.category.replace(/ /g, '-')}`;
     ratingDiv.className = 'flip-rating';
 
     cardFrontDiv.innerHTML = `<div class="complexity ${question.complexity}">${question.category} / ${question.complexity}</div><div class="text">${question.title.replace(/(?:\r\n|\r|\n)/g, '<br>')}</div>`;
