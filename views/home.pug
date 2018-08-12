@@ -7,11 +7,12 @@ block content
     .col-md-12
       h2 Number Of FlashCards we have so far:
       span#cards_value 0
-  .row
-    .col-md-12
-      h2 Number of FlashCards you marked as learned:
-      span#learned_value 0
-  .row
-    .col-md-12
-      h2 Number of FlashCards you starred:
-      span#favored_value 0
+  if user
+    .row
+      .col-md-12
+        h2 Number of FlashCards you marked as learned:
+        span#learned_value 0
+    .row
+      .col-md-12
+        h2 Number of FlashCards you starred:
+        span#favored_value 0

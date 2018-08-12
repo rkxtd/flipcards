@@ -53,17 +53,25 @@ exports.getMyFlashCards = (req, res) => {
 
 exports.getFlashCardStatistic = (req, res) => {
   Question.find({}, (err, questions) => {
-    User.findOne({ _id: req.user._id }, (err, { flipcards: { learned, favored } }) => {
-      if (err) {
-        return next(err);
-      }
+    if (req.user._id) {
+      User.findOne({ _id: req.user._id }, (err, { flipcards: { learned, favored } }) => {
+        if (err) {
+          return next(err);
+        }
 
+        res.json({
+          totalCards: questions.length,
+          totalLearned: learned.length,
+          totalFavored: favored.length,
+        });
+      });
+    } else {
       res.json({
         totalCards: questions.length,
-        totalLearned: learned.length,
-        totalFavored: favored.length,
+        totalLearned: 0,
+        totalFavored: 0,
       });
-    });
+    }
   });
 };
 

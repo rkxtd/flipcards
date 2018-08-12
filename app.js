@@ -135,7 +135,7 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
-app.get('/api/flashcards/statistic', passportConfig.isAuthenticated, apiController.getFlashCardStatistic);
+app.get('/api/flashcards/statistic', apiController.getFlashCardStatistic);
 app.get('/flashcard/add', passportConfig.isAuthenticated, flashcardController.addFlashCardForm);
 app.post('/flashcard/add', passportConfig.isAuthenticated, flashcardController.addFlashCard);
 app.get('/flashcard/delete/:flashCardId', passportConfig.isAuthenticated, flashcardController.deleteFlashCard);
