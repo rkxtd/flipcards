@@ -100,6 +100,9 @@ body {
 .flip-card .processes-and-threads {
   background-color: #fff740; }
 
+.flip-card .encryption {
+  background-color: #19a0a1; }
+
 .flip-card .card-back {
   background-image: linear-gradient(to bottom, #6783c1 0%, #c1f693 100%); }
 
