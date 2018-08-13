@@ -108,9 +108,12 @@ app.use((req, res, next) => {
     !req.path.match(/^\/auth/) &&
     !req.path.match(/\./)) {
     req.session.returnTo = req.originalUrl;
-  } else if (req.user &&
-    (req.path === '/account' || req.path.match(/^\/api/))) {
+  } else if (req.user && (req.path === '/account' || req.path.match(/^\/api/))) {
     req.session.returnTo = req.originalUrl;
+  }
+
+  if (req.session.returnTo === '/api/flashcards/statistic') {
+    req.session.returnTo = '/';
   }
   next();
 });
