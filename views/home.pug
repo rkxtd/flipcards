@@ -6,13 +6,25 @@ block content
   .row
     .col-md-12
       h2 Number Of FlashCards we have so far:
-      span#cards_value 0
+      span#cards_value
+        span.loading-dots
+          span.loading-dots--dot
+          span.loading-dots--dot
+          span.loading-dots--dot
   if user
     .row
       .col-md-12
         h2 Number of FlashCards you marked as learned:
-        span#learned_value 0
+        span#learned_value
+          span.loading-dots
+            span.loading-dots--dot
+            span.loading-dots--dot
+            span.loading-dots--dot
     .row
       .col-md-12
         h2 Number of FlashCards you starred:
-        span#favored_value 0
+        span#favored_value
+          span.loading-dots
+            span.loading-dots--dot
+            span.loading-dots--dot
+            span.loading-dots--dot

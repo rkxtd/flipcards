@@ -9,5 +9,5 @@ $(document).ready(() => {
         $('#learned_value').html(totalLearned);
         $('#favored_value').html(totalFavored);
       });
-  }, 1000);
+  }, 3000);
 });
